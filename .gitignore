@@ -1,0 +1,5 @@
+*.pyc
+*.log
+__pycache__
+!/test_dir/mysql_test.py
+*.idea
