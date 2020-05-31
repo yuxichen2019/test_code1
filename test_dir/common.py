@@ -104,7 +104,6 @@ class Api(object):
         res_str = requests.post(url=url, data=data_json, headers=headers)
         #转化为字典
         res=  eval(res_str.text)
-
         return res
 
     def ask_104(self,data):
