@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="3" hostname="hanwenlu" name="pytest" skipped="0" tests="7" time="125.250" timestamp="2020-03-10T09:01:48.185695"><testcase classname="test_dir.test_customerlist.TestCustomerList" file="test_dir\test_customerlist.py" line="23" name="test_add_customer[case1]" time="16.686"></testcase><testcase classname="test_dir.test_customerlist.TestCustomerList" file="test_dir\test_customerlist.py" line="23" name="test_add_customer[case2]" time="11.198"></testcase><testcase classname="test_dir.test_flow_card_manage.TestRuku" file="test_dir\test_flow_card_manage.py" line="38" name="test_ruku[1-\u5e7f\u4e1c\u8054\u901a2-2-3-\u5e7f\u4e1c\u8054\u901a2\u7528\u91cf\u8ba1\u8d39\u5957\u9910-\u6d4b\u8bd5\u5165\u5e93---S2]" time="9.884"></testcase><testcase classname="test_dir.test_flow_card_manage.TestHuabo" file="test_dir\test_flow_card_manage.py" line="83" name="test__huabo1[case1]" time="10.934"><failure message="AssertionError: assert &apos;一级客户&apos; == &apos;假卡专用户&apos;
+  - 一级客户
+  + 假卡专用户">self = &lt;test_dir.test_flow_card_manage.TestHuabo object at 0x000001B901424688&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;71668e94352786cf4cfe1a9ec5f1be65&quot;)&gt;, login_m = None
+price = &apos;1&apos;, activetype = &apos;自动激活&apos;, settlementType = &apos;月结日结算&apos;, imei = &apos;不绑定IMEI&apos;, mark = &apos;划拨测试&apos;
+
+    @pytest.mark.parametrize(
+        &quot;price,activetype, settlementType,imei,mark&quot;,
+        [(&quot;1&quot;,&quot;自动激活&quot;, &quot;月结日结算&quot;,&quot;不绑定IMEI&quot;,&quot;划拨测试&quot;)
+         ],
+        ids=[&quot;case1&quot;])
+    
+    def test__huabo1(self,browser,login_m,price,activetype,settlementType,imei,mark):
+        &apos;&apos;&apos;
+        划拨-文件方式
+        &apos;&apos;&apos;
+        fh = FlowCardManage(browser)
+        sleep(1)
+        fh.card_manage.click()
+        fh.flow_card_manage.click()
+        fh.transferring.click()
+        #划拨到假卡专用户
+        fh.hbcustomername.click()
+        fh.hbtestcustomer.click()
+        fh.hbprice=(price)
+        fh.hbFile.send_keys(iccid_path)
+        Select(fh.hbactivetype).select_by_visible_text(activetype)
+        Select(fh.hbsettlementType).select_by_visible_text(settlementType)
+        Select(fh.hbimeiBind).select_by_visible_text(imei)
+        fh.hbRemark=(mark)
+        fh.huaboSave.click()
+    
+    
+        # 执行SQL语句
+        sql=&apos;&apos;&apos;
+        SELECT customer_name FROM `t_customer` t1 left join t_hierarchy t2 on  substring_index( t2.hierarchy_code, &quot;_&quot;,- 1 ) = t1.uuid where t2.iccid_ = &apos;%s&apos;
+        &apos;&apos;&apos;
+    
+        data=(we.get_some(iccid_path))
+    
+        self.customername = mq.execQuery(sql % data)
+&gt;       assert self.customername[0][0] == &quot;假卡专用户&quot;
+E       AssertionError: assert &apos;一级客户&apos; == &apos;假卡专用户&apos;
+E         - 一级客户
+E         + 假卡专用户
+
+test_dir\test_flow_card_manage.py:119: AssertionError</failure></testcase><testcase classname="test_dir.test_flow_card_manage.TestHuabo" file="test_dir\test_flow_card_manage.py" line="120" name="test__huabo2[case1]" time="11.937"><failure message="AssertionError: assert (&apos;一级客户&apos; == &apos;硕汉卡库&apos;
+  - 一级客户
+  + 硕汉卡库)">self = &lt;test_dir.test_flow_card_manage.TestHuabo object at 0x000001B901593308&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;71668e94352786cf4cfe1a9ec5f1be65&quot;)&gt;, login_m = None
+price1 = &apos;1&apos;, activetype1 = &apos;自动激活&apos;, settlementType1 = &apos;月结日结算&apos;, imei1 = &apos;不绑定IMEI&apos;, mark1 = &apos;划拨测试2&apos;
+
+    @pytest.mark.parametrize(
+        &quot;price1,activetype1, settlementType1,imei1,mark1&quot;,
+        [(&quot;1&quot;,&quot;自动激活&quot;, &quot;月结日结算&quot;,&quot;不绑定IMEI&quot;,&quot;划拨测试2&quot;)
+         ],
+        ids=[&quot;case1&quot;])
+    
+    def test__huabo2(self, browser,login_m, price1, activetype1, settlementType1, imei1, mark1):
+        &apos;&apos;&apos;
+        回划硕汉卡库,按iccid开始结束段
+        &apos;&apos;&apos;
+        sql_a = &apos;&apos;&apos;
+                        SELECT customer_name FROM `t_customer` t1 left join t_hierarchy t2 on  substring_index( t2.hierarchy_code, &quot;_&quot;,- 1 ) = t1.uuid where t2.iccid_ = &apos;%s&apos;
+                        &apos;&apos;&apos;
+    
+        sql_b = &apos;&apos;&apos;
+                        SELECT remark FROM `t_card_store` where iccid = &apos;%s&apos;
+                        &apos;&apos;&apos;
+        #获取到卡号iccid
+        data = (we.get_some(iccid_path))
+    
+    
+        fh = FlowCardManage(browser)
+        sleep(1)
+        fh.card_manage.click()
+        fh.flow_card_manage.click()
+        fh.transferring.click()
+        fh.hbcustomername.click()
+        # 划拨回硕汉卡库
+        fh.hbtestcustomer1.click()
+        fh.hbprice = (price1)
+        fh.starticcid=(data)
+        fh.endiccid=(data)
+        Select(fh.hbactivetype).select_by_visible_text(activetype1)
+        Select(fh.hbsettlementType).select_by_visible_text(settlementType1)
+        Select(fh.hbimeiBind).select_by_visible_text(imei1)
+        fh.hbRemark = (mark1)
+        fh.huaboSave.click()
+    
+        self.customername = mq.execQuery(sql_a % data)
+        self.test_mark=mq.execQuery(sql_b % data)
+    
+&gt;       assert self.customername[0][0] == &quot;硕汉卡库&quot; and self.test_mark[0][0] == mark1
+E       AssertionError: assert (&apos;一级客户&apos; == &apos;硕汉卡库&apos;
+E         - 一级客户
+E         + 硕汉卡库)
+
+test_dir\test_flow_card_manage.py:162: AssertionError</failure></testcase><testcase classname="test_dir.test_flow_card_manage.TestSearch" file="test_dir\test_flow_card_manage.py" line="167" name="test_search_by_customer" time="4.955"></testcase><testcase classname="test_dir.test_flow_card_manage.TestSearch" file="test_dir\test_flow_card_manage.py" line="190" name="test_search_by_iccid" time="56.528"><failure message="AttributeError: &apos;NoneType&apos; object has no attribute &apos;text&apos;">self = &lt;test_dir.test_flow_card_manage.TestSearch object at 0x000001B9015A3DC8&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;71668e94352786cf4cfe1a9ec5f1be65&quot;)&gt;, login_m = None
+
+    def test_search_by_iccid(self,browser,login_m):
+        &apos;&apos;&apos;
+        搜索--ICCID
+        &apos;&apos;&apos;
+        iccid = &quot;99999888886666610001&quot;
+        fs=FlowCardManage(browser)
+        fs.card_manage.click()
+        fs.flow_card_manage.click()
+        fs.searchiccid=(iccid)
+        fs.search.click()
+        #结果列表的客户名称
+&gt;       text= fs.s_cusname.text
+E       AttributeError: &apos;NoneType&apos; object has no attribute &apos;text&apos;
+
+test_dir\test_flow_card_manage.py:202: AttributeError</failure></testcase></testsuite></testsuites>

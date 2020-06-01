@@ -103,3 +103,7 @@ from test_dir.common import Mysql,W_excel,Api
 # dict = res_query.get('data')
 # print('调用查询接口成功~~~~ %s' % (dict.get('cardStatus')))
 # print(type(dict.get('cardStatus')))
+
+
+m=Mysql()
+m.execQuery('SELECT iccid FROM t_card_store')

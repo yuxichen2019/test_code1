@@ -13,9 +13,9 @@ class Mysql:
     """
     def __init__(self):
         self.host = '192.168.1.104'
-        self.port = 3306
-        self.user = "han"
-        self.pwd = "SY666.com"
+        self.port = 3308
+        self.user = "root"
+        self.pwd = "sy666.com"
         self.db = "icms"
 
     def __GetConnect(self):
@@ -25,7 +25,7 @@ class Mysql:
         """
         if not self.db:
             raise(NameError,"没有设置数据库信息")
-        self.conn = pymysql.connect(host=self.host,user=self.user,password=self.pwd,database=self.db,charset="utf8")
+        self.conn = pymysql.connect(host=self.host,user=self.user,password=self.pwd,database=self.db,charset="utf8",serverTimezone="Hongkong")
         cur = self.conn.cursor()
         if not cur:
             raise(NameError,"连接数据库失败")

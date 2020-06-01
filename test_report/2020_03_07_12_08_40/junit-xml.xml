@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="3" hostname="hanwenlu" name="pytest" skipped="0" tests="5" time="113.559" timestamp="2020-03-07T12:08:41.513413"><testcase classname="test_dir.test_customerlist.TestCustomerList" file="test_dir\test_customerlist.py" line="23" name="test_add_customer[case1]" time="73.723"><failure message="AttributeError: &apos;NoneType&apos; object has no attribute &apos;click&apos;">self = &lt;test_dir.test_customerlist.TestCustomerList object at 0x00000196675F8348&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;7ce01234a6e88b602b29a6bb2a22be81&quot;)&gt;, login_m = None
+cname = &apos;pytest0001&apos;, phone = &apos;15112342277&apos;, city = &apos;广东省&apos;
+
+    @pytest.mark.parametrize(
+        &quot;cname, phone, city&quot;,
+        [(&quot;pytest0001&quot;,&quot;15112342277&quot;,&quot;广东省&quot;),
+         (&quot;pytest0002&quot;,&quot;15112342277&quot;,&quot;广东省&quot;)
+         ],
+        ids=[&quot;case1&quot;, &quot;case2&quot;]
+    )
+    def test_add_customer(self,browser,login_m,cname, phone, city):
+        &apos;&apos;&apos;
+        添加一级客户
+        &apos;&apos;&apos;
+        customer_list = []
+        ag=AccountManagement(browser)
+        sleep(2)
+&gt;       ag.customer_list.click()
+E       AttributeError: &apos;NoneType&apos; object has no attribute &apos;click&apos;
+
+test_dir\test_customerlist.py:38: AttributeError</failure></testcase><testcase classname="test_dir.test_customerlist.TestCustomerList" file="test_dir\test_customerlist.py" line="23" name="test_add_customer[case2]" time="10.881"></testcase><testcase classname="test_dir.test_flow_card_manage.TestRuku" file="test_dir\test_flow_card_manage.py" line="38" name="test_ruku[1-\u5e7f\u4e1c\u8054\u901a2-2-3-\u5e7f\u4e1c\u8054\u901a2\u7528\u91cf\u8ba1\u8d39\u5957\u9910-\u6d4b\u8bd5\u5165\u5e93---S2]" time="9.545"></testcase><testcase classname="test_dir.test_flow_card_manage.TestHuabo" file="test_dir\test_flow_card_manage.py" line="83" name="test__huabo1[case1]" time="8.141"><failure message="selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none; border: 2px solid red;&quot;&gt;...&lt;/span&gt; is not clickable at point (84, 386). Other element would receive the click: &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none;&quot;&gt;...&lt;/span&gt;
+  (Session info: chrome=80.0.3987.132)">self = &lt;test_dir.test_flow_card_manage.TestHuabo object at 0x0000019667625988&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;7ce01234a6e88b602b29a6bb2a22be81&quot;)&gt;, login_m = None
+price = &apos;1&apos;, activetype = &apos;自动激活&apos;, settlementType = &apos;月结日结算&apos;, imei = &apos;不绑定IMEI&apos;, mark = &apos;划拨测试&apos;
+
+    @pytest.mark.parametrize(
+        &quot;price,activetype, settlementType,imei,mark&quot;,
+        [(&quot;1&quot;,&quot;自动激活&quot;, &quot;月结日结算&quot;,&quot;不绑定IMEI&quot;,&quot;划拨测试&quot;)
+         ],
+        ids=[&quot;case1&quot;])
+    
+    def test__huabo1(self,browser,login_m,price,activetype,settlementType,imei,mark):
+        &apos;&apos;&apos;
+        划拨-文件方式
+        &apos;&apos;&apos;
+        fh = FlowCardManage(browser)
+        sleep(1)
+        fh.card_manage.click()
+&gt;       fh.flow_card_manage.click()
+
+test_dir\test_flow_card_manage.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click
+    self._execute(Command.CLICK_ELEMENT)
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute
+    return self._parent.execute(command, params)
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x00000196662D6808&gt;
+response = {&apos;status&apos;: 400, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tBaseThreadInitThunk [0x76C28494+36]\\n\\tRtlAreBitsSet [0x771341C8+136]\\n\\tRtlAreBitsSet [0x77134198+88]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none; border: 2px solid red;&quot;&gt;...&lt;/span&gt; is not clickable at point (84, 386). Other element would receive the click: &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none;&quot;&gt;...&lt;/span&gt;
+E         (Session info: chrome=80.0.3987.132)
+
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException</failure></testcase><testcase classname="test_dir.test_flow_card_manage.TestHuabo" file="test_dir\test_flow_card_manage.py" line="120" name="test__huabo2[case1]" time="7.518"><failure message="selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none; border: 2px solid red;&quot;&gt;...&lt;/span&gt; is not clickable at point (84, 386). Other element would receive the click: &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none;&quot;&gt;...&lt;/span&gt;
+  (Session info: chrome=80.0.3987.132)">self = &lt;test_dir.test_flow_card_manage.TestHuabo object at 0x00000196677A6488&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;7ce01234a6e88b602b29a6bb2a22be81&quot;)&gt;, login_m = None
+price1 = &apos;1&apos;, activetype1 = &apos;自动激活&apos;, settlementType1 = &apos;月结日结算&apos;, imei1 = &apos;不绑定IMEI&apos;, mark1 = &apos;划拨测试2&apos;
+
+    @pytest.mark.parametrize(
+        &quot;price1,activetype1, settlementType1,imei1,mark1&quot;,
+        [(&quot;1&quot;,&quot;自动激活&quot;, &quot;月结日结算&quot;,&quot;不绑定IMEI&quot;,&quot;划拨测试2&quot;)
+         ],
+        ids=[&quot;case1&quot;])
+    
+    def test__huabo2(self, browser,login_m, price1, activetype1, settlementType1, imei1, mark1):
+        &apos;&apos;&apos;
+        回划硕汉卡库,按iccid开始结束段
+        &apos;&apos;&apos;
+        sql_a = &apos;&apos;&apos;
+                        SELECT customer_name FROM `t_customer` t1 left join t_hierarchy t2 on  substring_index( t2.hierarchy_code, &quot;_&quot;,- 1 ) = t1.uuid where t2.iccid_ = &apos;%s&apos;
+                        &apos;&apos;&apos;
+    
+        sql_b = &apos;&apos;&apos;
+                        SELECT remark FROM `t_card_store` where iccid = &apos;%s&apos;
+                        &apos;&apos;&apos;
+        #获取到卡号iccid
+        data = (we.get_some(iccid_path))
+    
+    
+        fh = FlowCardManage(browser)
+        sleep(1)
+        fh.card_manage.click()
+&gt;       fh.flow_card_manage.click()
+
+test_dir\test_flow_card_manage.py:145: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click
+    self._execute(Command.CLICK_ELEMENT)
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute
+    return self._parent.execute(command, params)
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x00000196662D6808&gt;
+response = {&apos;status&apos;: 400, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tBaseThreadInitThunk [0x76C28494+36]\\n\\tRtlAreBitsSet [0x771341C8+136]\\n\\tRtlAreBitsSet [0x77134198+88]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none; border: 2px solid red;&quot;&gt;...&lt;/span&gt; is not clickable at point (84, 386). Other element would receive the click: &lt;span class=&quot;txt&quot; style=&quot;cursor: pointer; color: rgb(189, 189, 189); font-size: 13px; margin-left: 30px; user-select: none;&quot;&gt;...&lt;/span&gt;
+E         (Session info: chrome=80.0.3987.132)
+
+C:\Users\Administrator\AppData\Local\Programs\Python\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException</failure></testcase></testsuite></testsuites>
